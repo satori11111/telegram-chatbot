@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-message_log-table
+      author: roma
+      changes:
+        - createTable:
+            tableName: message_log
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: chat_id
+                  type: bigint
+                  constraints:
+                    unique: true
+                    nullable: false
+                    foreignKeyName: fk_chat_id
+                    references: chat(chat_id)

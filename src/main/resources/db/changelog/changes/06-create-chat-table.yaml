@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-chat-table
+      author: roma
+      changes:
+        - createTable:
+            tableName: chat
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: chat_id
+                  type: bigint
+                  constraints:
+                    unique: true
+                    nullable: false
