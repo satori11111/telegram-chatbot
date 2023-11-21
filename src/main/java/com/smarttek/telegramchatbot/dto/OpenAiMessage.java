@@ -1,15 +1,15 @@
 package com.smarttek.telegramchatbot.dto;
 
-public class Message {
+public class OpenAiMessage {
 
     private String role;
     private String content;
 
-    public Message(String role, String content) {
+    public OpenAiMessage(String role, String content) {
         this.role = role;
         this.content = content;
     }
-    public Message() {
+    public OpenAiMessage() {
     }
 
     public String getRole() {

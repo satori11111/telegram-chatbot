@@ -1,22 +1,17 @@
 package com.smarttek.telegramchatbot.bot;
 
-import com.smarttek.telegramchatbot.exception.NotificationException;
+import com.smarttek.telegramchatbot.dto.MessageLogDto;
 import com.smarttek.telegramchatbot.service.OpenAiService;
-import jakarta.annotation.PostConstruct;
-import java.util.ArrayList;
+import com.smarttek.telegramchatbot.service.MessageService;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
-import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
 public class TelegramChatBot extends TelegramLongPollingBot {
@@ -24,8 +19,9 @@ public class TelegramChatBot extends TelegramLongPollingBot {
     private OpenAiService openAiService;
     @Getter
     private final Set<Long> chatIds = new HashSet<>();
+    @Autowired
+    private MessageService messageService;
     private final String botUserName;
-    private List<BotCommand> commands;
 
     public TelegramChatBot(String botToken, String botUserName) {
         super(botToken);
@@ -37,13 +33,24 @@ public class TelegramChatBot extends TelegramLongPollingBot {
         return botUserName;
     }
 
+    @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
         if (!update.hasMessage() && !update.getMessage().hasText()) {
             return;
         }
-        String message = update.getMessage().getText();
+        String request = update.getMessage().getText();
         Long chatId = update.getMessage().getChatId();
+        String response = openAiService.getResponse(request);
+        SendMessage sendMessage = new SendMessage(chatId.toString(), response);
+        execute(sendMessage);
+        saveToDb(update, request, chatId, response);
+    }
+
+    private void saveToDb(Update update, String request, Long chatId, String response) {
+        Message message = update.getMessage();
+        Integer date = message.getDate();
+        messageService.save(new MessageLogDto(chatId, request, response, date));
         chatIds.add(chatId);
     }
 

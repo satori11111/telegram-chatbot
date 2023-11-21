@@ -17,7 +17,21 @@ databaseChangeLog:
                   name: chat_id
                   type: bigint
                   constraints:
-                    unique: true
                     nullable: false
                     foreignKeyName: fk_chat_id
-                    references: chat(chat_id)
+                    references: chat(id)
+              - column:
+                  name: date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: request
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: response
+                  type: text
+                  constraints:
+                    nullable: false

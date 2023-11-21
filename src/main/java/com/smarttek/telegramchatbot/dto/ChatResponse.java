@@ -23,11 +23,11 @@ public class ChatResponse {
     public static class Choice {
 
         private int index;
-        private Message message;
+        private OpenAiMessage openAiMessage;
 
-        public Choice(int index, Message message) {
+        public Choice(int index, OpenAiMessage openAiMessage) {
             this.index = index;
-            this.message = message;
+            this.openAiMessage = openAiMessage;
         }
         public Choice() {
         }
@@ -39,12 +39,12 @@ public class ChatResponse {
             this.index = index;
         }
 
-        public Message getMessage() {
-            return message;
+        public OpenAiMessage getMessage() {
+            return openAiMessage;
         }
 
-        public void setMessage(Message message) {
-            this.message = message;
+        public void setMessage(OpenAiMessage openAiMessage) {
+            this.openAiMessage = openAiMessage;
         }
     }
 }
