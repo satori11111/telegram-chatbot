@@ -11,6 +11,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 @Entity
 @Data
@@ -20,6 +22,8 @@ public class MessageLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToStringExclude
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "chat_id", nullable = false)
     private Chat chat;
     @Column(nullable = false)
@@ -28,4 +32,14 @@ public class MessageLog {
     private String response;
     @Column(nullable = false, name = "date")
     private LocalDateTime localDateTime;
+
+    @Override
+    public String toString() {
+        return "MessageLog{" +
+                "id=" + id +
+                ", request='" + request + '\'' +
+                ", response='" + response + '\'' +
+                ", localDateTime=" + localDateTime +
+                '}';
+    }
 }

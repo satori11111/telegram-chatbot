@@ -1,7 +1,7 @@
 package com.smarttek.telegramchatbot.bot;
 
 import com.smarttek.telegramchatbot.dto.MessageLogDto;
-import com.smarttek.telegramchatbot.service.OpenAiService;
+import com.smarttek.telegramchatbot.client.OpenAiClient;
 import com.smarttek.telegramchatbot.service.MessageService;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +16,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class TelegramChatBot extends TelegramLongPollingBot {
     @Autowired
-    private OpenAiService openAiService;
+    private OpenAiClient openAiClient;
     @Getter
     private final Set<Long> chatIds = new HashSet<>();
     @Autowired
@@ -41,7 +41,7 @@ public class TelegramChatBot extends TelegramLongPollingBot {
         }
         String request = update.getMessage().getText();
         Long chatId = update.getMessage().getChatId();
-        String response = openAiService.getResponse(request);
+        String response = openAiClient.getResponse(request);
         SendMessage sendMessage = new SendMessage(chatId.toString(), response);
         execute(sendMessage);
         saveToDb(update, request, chatId, response);
