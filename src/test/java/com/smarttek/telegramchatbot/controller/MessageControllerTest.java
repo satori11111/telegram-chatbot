@@ -8,8 +8,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.smarttek.telegramchatbot.dto.MessageLogDto;
-import com.smarttek.telegramchatbot.dto.MessageLogResponseDto;
+import com.smarttek.telegramchatbot.dto.message.MessageLogDto;
+import com.smarttek.telegramchatbot.dto.message.MessageLogResponseDto;
 import com.smarttek.telegramchatbot.model.Chat;
 import com.smarttek.telegramchatbot.model.MessageLog;
 import java.time.LocalDateTime;
@@ -28,7 +28,6 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 

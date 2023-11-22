@@ -1,8 +1,7 @@
 package com.smarttek.telegramchatbot.service.impl;
 
-import com.smarttek.telegramchatbot.bot.TelegramChatBot;
-import com.smarttek.telegramchatbot.dto.MessageLogDto;
-import com.smarttek.telegramchatbot.dto.MessageLogResponseDto;
+import com.smarttek.telegramchatbot.dto.message.MessageLogDto;
+import com.smarttek.telegramchatbot.dto.message.MessageLogResponseDto;
 import com.smarttek.telegramchatbot.mapper.MessageMapper;
 import com.smarttek.telegramchatbot.model.Chat;
 import com.smarttek.telegramchatbot.model.MessageLog;

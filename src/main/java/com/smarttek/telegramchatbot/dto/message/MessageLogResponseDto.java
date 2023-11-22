@@ -1,4 +1,4 @@
-package com.smarttek.telegramchatbot.dto;
+package com.smarttek.telegramchatbot.dto.message;
 
 import com.smarttek.telegramchatbot.model.Chat;
 import java.time.LocalDateTime;

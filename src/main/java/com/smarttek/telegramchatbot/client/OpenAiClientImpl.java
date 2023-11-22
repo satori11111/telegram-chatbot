@@ -1,8 +1,7 @@
 package com.smarttek.telegramchatbot.client;
 
-import com.smarttek.telegramchatbot.client.OpenAiClient;
-import com.smarttek.telegramchatbot.dto.ChatRequest;
-import com.smarttek.telegramchatbot.dto.ChatResponse;
+import com.smarttek.telegramchatbot.dto.chat.ChatRequest;
+import com.smarttek.telegramchatbot.dto.chat.ChatResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +29,6 @@ public class OpenAiClientImpl implements OpenAiClient {
             if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
                 return "No response";
             }
-            return response.getChoices().get(0).getMessage().getContent();
+            return response.getChoices().get(0).getOpenAiMessage().getContent();
         }
 }

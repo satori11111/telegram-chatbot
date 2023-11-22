@@ -1,6 +1,6 @@
 package com.smarttek.telegramchatbot.bot;
 
-import com.smarttek.telegramchatbot.dto.MessageLogDto;
+import com.smarttek.telegramchatbot.dto.message.MessageLogDto;
 import com.smarttek.telegramchatbot.client.OpenAiClient;
 import com.smarttek.telegramchatbot.service.MessageService;
 import java.util.HashSet;

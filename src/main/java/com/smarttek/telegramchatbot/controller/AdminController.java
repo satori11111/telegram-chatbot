@@ -1,6 +1,6 @@
 package com.smarttek.telegramchatbot.controller;
 
-import com.smarttek.telegramchatbot.dto.MessageLogResponseDto;
+import com.smarttek.telegramchatbot.dto.message.MessageLogResponseDto;
 import com.smarttek.telegramchatbot.service.MessageService;
 import com.smarttek.telegramchatbot.service.TelegramSenderService;
 import io.swagger.v3.oas.annotations.Operation;
