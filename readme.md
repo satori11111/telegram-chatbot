@@ -76,7 +76,6 @@ Use endpoint auth/register to register user and stick to these rules:
 2.lastName length between 1 and 255<br>
 3.email should be valid<br>
 4.password minimum length is 4<br>
-5.shippingAddress is optional at this time<br>
 
 **For access to all endpoints use admin credentials in auth/login** <br>
 **Username**: romakuch@gmail.com <br>
