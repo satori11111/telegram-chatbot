@@ -21,9 +21,9 @@ public class AdminController {
     private final MessageService messageService;
     private final TelegramSenderService telegramSenderService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/messages")
     @Operation(summary = "Get all messages")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<MessageLogResponseDto> findAll(Pageable pageable) {
         return messageService.findAll(pageable);
     }

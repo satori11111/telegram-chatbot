@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MessageRepository extends JpaRepository<MessageLog, Long> {
-    @Query("FROM MessageLog m JOIN FETCH m.chat c WHERE c.id = :chatId")
+    @Query("FROM MessageLog m JOIN FETCH m.chat c WHERE c.chatId = :chatId")
     List<MessageLog> findAllByChatIdWithChat(Long chatId, Pageable pageable);
     @Query("FROM MessageLog m JOIN FETCH m.chat")
     List<MessageLog> findAllWithChats(Pageable pageable);
